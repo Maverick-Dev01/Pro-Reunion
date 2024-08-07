@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reuniones</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Reuniones</h2>
+    <div class="tabs">
+      <button class="tab-button" onclick="showTab('historial')">Historial de Reuniones</button>
+      <button class="tab-button" onclick="showTab('nueva-reunion')">Nueva Reunión</button>
+      <button class="tab-button" onclick="showTab('calendario')">Calendario de Reuniones</button>
+    </div>
+
+    <div id="historial" class="tab-content">
+      <h3>Historial de Reuniones</h3>
+      <table id="historialTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Tema</th>
+            <th>Área</th>
+            <th>Detalles</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filas de ejemplo -->
+          <tr onclick="mostrarDetallesReunion(1)">
+            <td>1</td>
+            <td>2024-06-30</td>
+            <td>10:00 AM</td>
+            <td>Actualización del Proyecto</td>
+            <td>Desarrollo</td>
+            <td>Detalles...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="nueva-reunion" class="tab-content" style="display: none;">
+      <h3>Nueva Reunión</h3>
+      <form id="nuevaReunionForm">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha"><br>
+        <label for="hora">Hora:</label>
+        <input type="time" id="hora" name="hora"><br>
+        <label for="tema">Tema:</label>
+        <input type="text" id="tema" name="tema"><br>
+        <label for="area">Área:</label>
+        <input type="text" id="area" name="area"><br>
+        <label for="detalles">Detalles:</label>
+        <textarea id="detalles" name="detalles"></textarea><br>
+        <label for="plataforma">Plataforma:</label>
+        <select id="plataforma" name="plataforma">
+          <option value="teams">Teams</option>
+          <option value="meet">Google Meet</option>
+          <option value="zoom">Zoom</option>
+        </select><br>
+        <label for="link">Link de la reunión:</label>
+        <input type="text" id="link" name="link"><br>
+        <button type="button" onclick="guardarReunion()">Guardar Reunión</button>
+      </form>
+    </div>
+
+    <div id="calendario" class="tab-content" style="display: none;">
+      <h3>Calendario de Reuniones</h3>
+      <div id="calendar"></div>
+    </div>
+  </div>
+
+  <div id="detallesReunionModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="cerrarModal()">&times;</span>
+      <h3>Detalles de la Reunión</h3>
+      <p id="detallesReunion"></p>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
